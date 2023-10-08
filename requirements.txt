@@ -1,6 +1,4 @@
-streamlit
-pandas
-numpy
-Python Imaging Library
-requests
-streamlit_lottie
+streamlit==1.27.0
+Python Imaging Library==1.27.0
+requests==2.19.1
+streamlit_lottie=0.0.5
