@@ -3,7 +3,8 @@ from PIL import Image
 import requests
 from streamlit_lottie import st_lottie
 
-st.set_page_config(page_title = "SAT and IELTS tutor", page_icon = ":fire:", layout = "wide")
+st.set_page_config(page_title="SAT and IELTS Tutor", page_icon=":fire:", layout="wide")
+
 
 def load_lottie(url):
     r = requests.get(url)
@@ -11,109 +12,88 @@ def load_lottie(url):
         return None
     return r.json()
 
-#local css
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# Load CSS
+st.markdown(
+    """
+    <style>
+    .container {
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+    .header {
+        font-size: 28px;
+    }
+    .subheader {
+        font-size: 20px;
+    }
+    .image-container {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-local_css("style/style.css")
-
-
-#loading assets
-lottie =load_lottie("https://lottie.host/43d9ebf8-5ad1-4e71-95e7-c3a3b573258b/itfSaLxjUL.json")
+# Loading assets
+lottie = load_lottie("https://lottie.host/43d9ebf8-5ad1-4e71-95e7-c3a3b573258b/itfSaLxjUL.json")
 img = Image.open("images/aizada.jpg")
 img1 = Image.open("images/dias.jpg")
 
-
-#header section
+# Header section
 with st.container():
     st.header("Hello, I am Anuar :wave:")
     st.title("SAT and IELTS tutor")
-
+# My own results
 with st.container():
     st.write("---")
     left, right = st.columns(2)
     with left:
-
-        st.header("My own results are:")
+        st.subheader("My Achievements")
         st.write("##")
         st.write("- IELTS - 8.0 (Listening - 8.5, Reading - 8.5, Writing and Speaking - 7)")
-        st.write("- SAT - 1470 (mathematics - 790, reading/writing - 680) ")
-        st.write("- NUET - 174 (mathematics - 96, critical thinking - 78)")
-        st.write("---")
-        st.header("I invite all motivated students to individual and group lessons.")
-        st.write("##")
-        st.write("My educational program is based on my personal experience of successful preparation.My students have achieved impressive results, improving their exam scores from 1100 to 1500 points. Successful cases of my students confirm the effectiveness of my methodology.")
-        st.write(" - During the teaching process, I also use artificial intelligence tools to optimize the lesson plan and schedule to ensure that each student receives the most effective learning.")
-        st.write(" - I have 1 year of teaching experience (over 500 working hours), and I strive to make lessons interesting and effective. My goal is to help you succeed in your studies.")
-        st.write(" - If you are looking for a teacher with proven methods, an individual approach, and the use of artificial intelligence for lesson planning, I am ready to help you! ")
-
-
-
+        st.write("- SAT - 1470 (Math - 790, Reading/Writing - 680)")
+        st.write("- NUET - 174 (Math - 96, Critical Thinking - 78)")
     with right:
-        st_lottie(lottie, height = 800, key = 'education')
-
+        st_lottie(lottie, height=500, key='education')
+# October cases
 with st.container():
     st.write("---")
-    st.header("Successful cases:")
+    st.header("October cases:")
     st.write("##")
-    image, text = st.columns((1,2))
+    image, text = st.columns((1, 2))
     with image:
-        st.image(img)
-
+        st.image(img, caption="Aizada")
     with text:
-        st.header("Aizada, a determined student, found me online with an initial SAT score of 1220 (670 in math and 550 in EBRW).")
+        st.subheader("Aizada's Success")
         st.write("##")
-        st.write(" In just one month of dedicated hard work and my guidance as her SAT tutor, she achieved remarkable progress.")
-        st.write("We honed her math skills to perfection, resulting in a score of 790. On the EBRW section, we worked extensively on reading comprehension and grammar, boosting her score to 690.")
-        st.write("---")
-        st.header("Aizada's total SAT score increased from 1220 to an impressive 1480, a testament to her determination and our focused tutoring sessions.")
-        st.write("##")
-        st.write("Her success not only opened doors to prestigious universities but also reinforced her belief that she can achieve anything she sets her mind to.")
-
-with st.container():
+        st.write("In just one month, Aizada achieved a remarkable SAT score improvement.")
+        st.write("Her total SAT score increased from 1220 (670 in math and 550 in EBRW) to 1480.")
+        st.write("This success opened doors to prestigious universities.")
     st.write("---")
-    st.write("##")
-    image, text = st.columns((1,2))
-
+    image, text = st.columns((1, 2))
     with image:
-        st.image(img1)
-        st.write("##")
-
+        st.image(img1, caption="Dias")
     with text:
-        st.header("Dias, a hard-working student, approached me with an initial SAT score of 990 (480 in EBRW and 510 in math).")
+        st.subheader("Dias's Success")
         st.write("##")
-        st.write("In just 1.5 months of dedicated hard work and under my guidance as his SAT tutor, he achieved remarkable progress.")
-        st.write("We focused on refining his math skills and strategies, resulting in a score of 750.")
-        st.write("On the EBRW section, we worked extensively on reading comprehension and grammar, boosting his score to 630")
-        st.write('---')
-        st.header("Dias's total SAT score increased from 990 to an impressive 1380 in this relatively short time frame.")
-        st.write('##')
-        st.write('This quick improvement is a proof to his determination and our focused tutoring sessions. His success not only opened doors to better opportunities but also reinforced his belief in his own abilities.')
+        st.write("In 1.5 months, Dias increased his SAT score from 990 (480 in EBRW and 510 in math) to 1380.")
+        st.write("This quick improvement is a testament to his determination and our focused tutoring sessions.")
+        st.write("It opened doors to better opportunities and reinforced his belief in his abilities.")
 
-# contacts
 
+
+# Contact
 with st.container():
     st.write("---")
-
-    st.header('Sign up for the free trial lesson')
+    st.header("Sign up for a free trial lesson")
     st.write("##")
 
-    contact = """
-    <form action="https://formsubmit.co/kunanbaevanuar79@gmail.com" method="POST">
-     <input type = "hidden" name = "_captcha" value = "false">
-     <input type="text" name="name" placeholder = "Your name" required>
-     <input type="text" name="telegram_id" placeholder = "Your telegram id" required>
-     <button type="submit">Send</button>
-    </form>
-    """
-    left, right = st.columns(2)
-    with left:
-        st.markdown(contact, unsafe_allow_html=True)
-    with right:
-        st.empty()
-
-
-
-
+    st.subheader("Contact Information")
+    name = st.text_input("Your name")
+    telegram_id = st.text_input("Your Telegram ID")
+    if st.button("Send"):
+        st.success("Your information has been submitted!")
 
